@@ -1,3 +1,20 @@
+# Rede neural com back propagation
+how to code a newral network with backpropagation in python (from scratch) - machineLearningMastery.com
+
+## Iniciando o projeto
+
+### Requisitos
+1. Python
+2. pip
+3. venv
+4. Interface gráfica
+
+### Executando
+1. `python -m venv venv`
+2. `source venv/bin/activate`
+3. `pip install -r requirements.txt`
+4. `python main.py`
+
 ### 1. **Importação de bibliotecas**
 ```python
 import numpy as np
