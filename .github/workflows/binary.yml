@@ -22,7 +22,7 @@ jobs:
     - name: Build Binary
       run: pyinstaller --onefile --name backpropagation main.py
     - name: Upload Binary
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: backpropagation
         path: dist/backpropagation

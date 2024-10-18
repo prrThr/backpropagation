@@ -23,7 +23,7 @@ jobs:
     - name: Build Exe
       run: pyinstaller --onefile --name backpropagation main.py
     - name: Upload Exe
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: backpropagation
         path: dist/backpropagation.exe
