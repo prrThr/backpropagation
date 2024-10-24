@@ -20,7 +20,7 @@ how to code a newral network with backpropagation in python (from scratch) - mac
 import numpy as np
 import matplotlib.pyplot as plt
 ```
-Aqui, estamos importando o `numpy`, que é a biblioteca usada para lidar com arrays e operações matemáticas eficientes, e o `matplotlib.pyplot`, que serve para gerar gráficos.
+`numpy` é a biblioteca usada para lidar com arrays e operações matemáticas e o `matplotlib.pyplot` serve para gerar gráficos.
 
 ### 2. **Função de ativação sigmoide**
 ```python
@@ -61,7 +61,7 @@ weights_hidden_output = np.random.uniform(size=(hidden_neurons, output_neurons))
 bias_hidden = np.random.uniform(size=(1, hidden_neurons))
 bias_output = np.random.uniform(size=(1, output_neurons))
 ```
-- **input_neurons**: número de entradas (features). No seu caso, é o tamanho da janela deslizante (5).
+- **input_neurons**: número de entradas (features). No caso, é o tamanho da janela deslizante (5).
 - **output_neurons**: um único valor de saída (o próximo valor do seno).
 - **Pesos e Biases**: Inicializados aleatoriamente. Os pesos conectam a camada de entrada à camada escondida (`weights_input_hidden`) e a camada escondida à saída (`weights_hidden_output`). Biases são usados para garantir que o neurônio possa ser ativado corretamente mesmo quando todas as entradas forem zero.
 
@@ -86,7 +86,7 @@ O forward pass é o processo de calcular a saída da rede neural, dado os pesos 
 ```python
 error = y - predicted_output
 ```
-Aqui, calculamos o erro, ou seja, a diferença entre o valor real (`y`) e o valor previsto pela rede neural (`predicted_output`).
+Cálculo do erro, ou seja, a diferença entre o valor real (`y`) e o valor previsto pela rede neural (`predicted_output`).
 
 #### d) **Backpropagation**
 ```python
@@ -155,13 +155,13 @@ y_train = np.array(y_train).reshape(-1, 1)
 ```python
 weights_input_hidden, weights_hidden_output, bias_hidden, bias_output = train(X_train, y_train)
 ```
-Aqui, chamamos a função `train()` para treinar a rede neural usando os dados preparados.
+A função `train()` é chamada para treinar a rede neural usando os dados preparados.
 
 ### 9. **Fazendo previsões**
 ```python
 predicted = predict(X_train, weights_input_hidden, weights_hidden_output, bias_hidden, bias_output)
 ```
-Usamos a rede treinada para prever os próximos valores do seno com base nos dados de treinamento.
+A rede treinada é usada para prever os próximos valores do seno com base nos dados de treinamento.
 
 ### 10. **Plotando os resultados**
 ```python
@@ -170,8 +170,4 @@ plt.plot(np.concatenate([sine_wave_normalized[:window_size], predicted.flatten()
 plt.legend()
 plt.show()
 ```
-Aqui, geramos um gráfico comparando os valores reais do seno normalizado com os valores previstos pela rede neural.
-
----
-
-Essa rede neural, embora simples, tenta aprender a forma da função seno e prever valores futuros com base nos dados de treinamento. Se precisar de mais explicações ou ajustes, estou à disposição!
+Aqui é gerado o gráfico comparando os valores reais do seno normalizado com os valores previstos pela rede neural.
