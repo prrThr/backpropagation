@@ -94,7 +94,7 @@ X_new = np.array(X_new)
 predicted_new = predict(X_new, weights_input_hidden, weights_hidden_output, bias_hidden, bias_output)
 
 plt.plot(np.concatenate([sine_wave_new_normalized[:window_size], predicted_new.flatten()]), label='Seno predito completo (360 valores)')
-plt.plot(full_sine_wave_normalized, label='Seno completo (360 valores)')
+plt.plot(sine_wave_new_normalized, label='Seno completo (360 valores)')
 plt.plot(sine_wave_normalized, label='Seno original (normalizado)')
 plt.plot(np.concatenate([sine_wave_normalized[:window_size], predicted.flatten()]), label='Seno predito original')
 plt.legend()
