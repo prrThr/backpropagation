@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import sys
  
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
@@ -52,7 +53,17 @@ def predict(X, weights_input_hidden, weights_hidden_output, bias_hidden, bias_ou
     predicted_output = sigmoid(output_layer_input)
     return predicted_output
 
-x = np.linspace(0, 2 * np.pi, 100)
+def entry():
+    print(f"Hi!\nRun: main.py SIN_VALUES EPOCHES")
+    if len(sys.argv) < 2:
+        sin_values = input("input amount of sin values: ")
+        epochs = input("input amount of epoches: ")
+        return int(sin_values), int(epochs)
+    return int(sys.argv[1]), int(sys.argv[2])
+        
+sin_values, desired_epoches = entry()
+
+x = np.linspace(0, 2 * np.pi, sin_values)    ## MUDE O ULTIMO PARAMETRO PARA A QUANTIDADE DE VALORES SENO
 sine_wave = np.sin(x)
 
 sine_wave_normalized = normalize(sine_wave)
@@ -67,7 +78,7 @@ for i in range(len(sine_wave_normalized) - window_size):
 X_train = np.array(X_train)
 y_train = np.array(y_train).reshape(-1, 1)
 
-weights_input_hidden, weights_hidden_output, bias_hidden, bias_output = train(X_train, y_train, epochs=10000) # MUDE O EPOCHS PARA APROXIMAR O RESULTADO!
+weights_input_hidden, weights_hidden_output, bias_hidden, bias_output = train(X_train, y_train, epochs=desired_epoches) # MUDE O EPOCHS PARA APROXIMAR O RESULTADO!
 
 predicted = predict(X_train, weights_input_hidden, weights_hidden_output, bias_hidden, bias_output)
 
