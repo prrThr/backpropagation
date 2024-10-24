@@ -63,9 +63,8 @@ def entry():
         
 sin_values, desired_epoches = entry()
 
-x = np.linspace(0, 2 * np.pi, sin_values)    ## MUDE O ULTIMO PARAMETRO PARA A QUANTIDADE DE VALORES SENO
+x = np.linspace(0, 2 * np.pi, sin_values)
 sine_wave = np.sin(x)
-
 sine_wave_normalized = normalize(sine_wave)
 
 X_train = []
@@ -78,12 +77,26 @@ for i in range(len(sine_wave_normalized) - window_size):
 X_train = np.array(X_train)
 y_train = np.array(y_train).reshape(-1, 1)
 
-weights_input_hidden, weights_hidden_output, bias_hidden, bias_output = train(X_train, y_train, epochs=desired_epoches) # MUDE O EPOCHS PARA APROXIMAR O RESULTADO!
+weights_input_hidden, weights_hidden_output, bias_hidden, bias_output = train(X_train, y_train, epochs=desired_epoches)
 
 predicted = predict(X_train, weights_input_hidden, weights_hidden_output, bias_hidden, bias_output)
 
+x_new = np.linspace(0, 2 * np.pi, 360)
+sine_wave_new = np.sin(x_new)
+sine_wave_new_normalized = normalize(sine_wave_new)
+
+X_new = []
+for i in range(len(sine_wave_new_normalized) - window_size):
+    X_new.append(sine_wave_new_normalized[i:i + window_size])
+
+X_new = np.array(X_new)
+
+predicted_new = predict(X_new, weights_input_hidden, weights_hidden_output, bias_hidden, bias_output)
+
+plt.plot(np.concatenate([sine_wave_new_normalized[:window_size], predicted_new.flatten()]), label='Seno predito completo (360 valores)')
+plt.plot(full_sine_wave_normalized, label='Seno completo (360 valores)')
 plt.plot(sine_wave_normalized, label='Seno original (normalizado)')
-plt.plot(np.concatenate([sine_wave_normalized[:window_size], predicted.flatten()]), label='Seno predito')
+plt.plot(np.concatenate([sine_wave_normalized[:window_size], predicted.flatten()]), label='Seno predito original')
 plt.legend()
 plt.show()
 
