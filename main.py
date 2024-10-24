@@ -11,7 +11,7 @@ def sigmoid_derivative(x):
 def normalize(data):
     return (data - np.min(data)) / (np.max(data) - np.min(data))
 
-def train(X, y, hidden_neurons=10, learning_rate=0.1, epochs=200000):
+def train(X, y, hidden_neurons=10, learning_rate=0.01, epochs=200000):
     input_neurons = X.shape[1]
     output_neurons = 1
 
@@ -53,15 +53,18 @@ def predict(X, weights_input_hidden, weights_hidden_output, bias_hidden, bias_ou
     predicted_output = sigmoid(output_layer_input)
     return predicted_output
 
+sin_values = 20 ## STATIC as requested :)
+
 def entry():
     print(f"Hi!\nRun: main.py SIN_VALUES EPOCHES")
-    if len(sys.argv) < 2:
-        sin_values = input("input amount of sin values: ")
+    if len(sys.argv) < 3:
+        learning_rate = input("input rate of learning: ")
         epochs = input("input amount of epoches: ")
-        return int(sin_values), int(epochs)
-    return int(sys.argv[1]), int(sys.argv[2])
+        neurons = input("input amount of neurons: ")
+        return int(learning_rate), int(epochs), int(neurons)
+    return float(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3])
         
-sin_values, desired_epoches = entry()
+learning_rate, desired_epoches, neurons = entry()
 
 x = np.linspace(0, 2 * np.pi, sin_values)
 sine_wave = np.sin(x)
@@ -77,7 +80,7 @@ for i in range(len(sine_wave_normalized) - window_size):
 X_train = np.array(X_train)
 y_train = np.array(y_train).reshape(-1, 1)
 
-weights_input_hidden, weights_hidden_output, bias_hidden, bias_output = train(X_train, y_train, epochs=desired_epoches)
+weights_input_hidden, weights_hidden_output, bias_hidden, bias_output = train(X_train, y_train, epochs=desired_epoches, learning_rate=learning_rate, hidden_neurons=neurons)
 
 predicted = predict(X_train, weights_input_hidden, weights_hidden_output, bias_hidden, bias_output)
 
